@@ -1,0 +1,17 @@
+_target_: src.models.cifar10_module.Cifar10LitModule
+
+optimizer:
+  _target_: torch.optim.SGD
+  _partial_: true
+  lr: 1e-2
+  weight_decay: 1e-2  
+  momentum: 0.9
+  nesterov: true
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 10
+

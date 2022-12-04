@@ -1,0 +1,22 @@
+_target_: src.models.timm_module.TimmModule
+
+model_name: 'vit_base_patch16_224'
+timm_pretrained: true
+timm_num_classes: 10
+
+
+optimizer:
+  _target_: torch.optim.SGD
+  _partial_: true
+  lr: 1e-2
+  weight_decay: 1e-2  
+  momentum: 0.9
+  nesterov: true
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.1
+  patience: 10
+

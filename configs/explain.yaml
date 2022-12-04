@@ -1,0 +1,44 @@
+defaults:
+  - _self_
+  - model: timm_vit.yaml
+  - callbacks: default.yaml
+  - logger: null # set logger here or use command line (e.g. `python train.py logger=tensorboard`)
+  - trainer: default.yaml
+  - paths: default.yaml
+  - extras: default.yaml
+  - hydra: default.yaml
+
+task_name: "explain"
+
+tags: ["dev"]
+
+techniques:
+  - "Original_Image"
+  - "IG"
+  - "IG w/ Noise Tunnel"
+  # - "Saliency"
+  - "Occlusion"
+  # - "SHAP"
+  - "GradCAM"
+  - "GradCAM++"
+
+PGD : True
+# "cpu"/"cuda"
+device: "cuda"
+
+labels:
+  url: "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
+  file_path: "data/imagenet_classes.txt"
+
+image_store_path: "data/sample/"
+image_urls:
+  - sample:
+      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKr5wT7rfkjkGvNeqgXjBmarC5ZNoZs-H2uMpML8O7Q4F9W-IlUQibBT6IPqyvX45NOgw&usqp=CAU"
+      class_num: 285
+      class: "Egyptian cat"
+      file_name: "cat.jpeg"
+  - sample:
+      url: "https://cdn.britannica.com/73/234473-050-5BAFEBF0/Maltese-dog.jpg"
+      class_num: 153
+      class: "Maltese dog"
+      file_name: "dog.jpg"
