@@ -21,7 +21,7 @@ pre-commit      # hooks for applying linters on commit
 rich            # beautiful text formatting in terminal
 pytest          # tests
 # sh            # for running bash commands in some tests (linux/macos only)
-timm==0.6.7
+timm==0.6.12
 gradio
 pylogger
 boto3
