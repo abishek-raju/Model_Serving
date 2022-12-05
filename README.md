@@ -1292,3 +1292,11 @@ python src/train.py trainer.max_epochs=20 datamodule.batch_size=64
 
 
 https://stackoverflow.com/questions/37921295/python-pil-image-make-3x3-grid-from-sequence-images
+
+
+
+
+
+
+
+torch-model-archiver --model-name cifar10_basic --version 1.0 --serialized-file /workspace/Model_Serving/logs/train/runs/2022-12-04_15-38-45/model.script.pt --handler /workspace/Model_Serving/src/torch_handlers/cifar10_handler.py --extra-files /workspace/Model_Serving/src/torch_handlers/cifar10_classes/index_to_name.json

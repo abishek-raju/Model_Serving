@@ -42,6 +42,7 @@ from pytorch_lightning import Callback, LightningDataModule, LightningModule, Tr
 from pytorch_lightning.loggers import LightningLoggerBase
 
 from src import utils
+import torch
 
 log = utils.get_pylogger(__name__)
 
@@ -113,8 +114,20 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
         utils.save_model_s3(cfg.get("s3_bucket_name"),ckpt_path,
                             cfg.get("s3_file_path"),cfg.get("aws_access_key_id"),
                             cfg.get("aws_secret_access_key"))
+    
+        log.info("Loading checkpoint")
+    
+    if cfg.get("trace_model"):
+        log.info("Starting Scripting!")
+        model = model.eval()
+        # assert cfg.ckpt_path and cfg.ckpt_path != None
+        # model = model.load_from_checkpoint(cfg.ckpt_path)
 
-    test_metrics = trainer.callback_metrics
+        scripted_model = model.to_torchscript(method="script")
+        torch.jit.save(scripted_model,f"{cfg.paths.output_dir}/model.script.pt")
+        log.info(f"Saving traced model to {cfg.paths.output_dir}/model.script.pt")
+
+        test_metrics = trainer.callback_metrics
 
     # merge train and test metrics
     metric_dict = {**train_metrics, **test_metrics}

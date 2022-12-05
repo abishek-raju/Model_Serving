@@ -76,24 +76,24 @@ class TimmModule(LightningModule):
 
         # self.transforms_2 = transforms.Resize((32,32))
 
-    def configure_sharded_model(self):
-        self.net = auto_wrap(self.net)
+    # def configure_sharded_model(self):
+    #     self.net = auto_wrap(self.net)
 
     def forward(self, x: torch.Tensor):
         return self.net(x)
 
-    @torch.jit.export
-    def forward_jit(self, x):
-        with torch.no_grad():
-            # transform the inputs
-            # forward pass
-            x = self.transform_normalize(x)
-            # x = self.transforms_2(x)
-            logits = self.net(x)
+    # @torch.jit.export
+    # def forward_jit(self, x):
+    #     with torch.no_grad():
+    #         # transform the inputs
+    #         # forward pass
+    #         x = self.transform_normalize(x)
+    #         # x = self.transforms_2(x)
+    #         logits = self.net(x)
 
-            preds = F.softmax(logits[0], dim=0)
+    #         preds = F.softmax(logits[0], dim=0)
 
-        return preds
+    #     return preds
 
     def on_train_start(self):
         # by default lightning executes validation step sanity checks before training starts,

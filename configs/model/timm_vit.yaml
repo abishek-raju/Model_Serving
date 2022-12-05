@@ -2,7 +2,7 @@ _target_: src.models.timm_module.TimmModule
 
 model_name: 'vit_base_patch16_224'
 timm_pretrained: true
-timm_num_classes: 10
+timm_num_classes: 1000
 
 
 optimizer:

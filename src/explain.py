@@ -44,7 +44,7 @@ def explain(cfg: DictConfig) -> Tuple[dict, dict]:
 
     model.eval()
     model = model.to(cfg.device)
-    # checkpoint = torch.load("epoch_035.ckpt")
+    # checkpoint = torch.load("/workspace/Model_Serving/epoch_035.ckpt",map_location=torch.device('cpu'))
     # model.load_state_dict(checkpoint['state_dict'])
 
     url, filename = (

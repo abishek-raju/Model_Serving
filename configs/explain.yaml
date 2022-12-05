@@ -14,17 +14,17 @@ tags: ["dev"]
 
 techniques:
   - "Original_Image"
-  - "IG"
-  - "IG w/ Noise Tunnel"
+  # - "IG"
+  # - "IG w/ Noise Tunnel"
   # - "Saliency"
-  - "Occlusion"
+  # - "Occlusion"
   # - "SHAP"
   - "GradCAM"
   - "GradCAM++"
 
 PGD : True
 # "cpu"/"cuda"
-device: "cuda"
+device: "cpu"
 
 labels:
   url: "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
