@@ -25,13 +25,13 @@ trainer:
 datamodule:
   batch_size: 256
 
-train: False
+train: True
 
 # evaluate on test set, using best model weights achieved during training
 # lightning chooses best weights based on the metric specified in checkpoint callback
-test: False
+test: True
 
 # simply provide checkpoint path to resume training
-ckpt_path: "/workspace/Model_Serving/epoch_035.ckpt"
+ckpt_path: null
 
 trace_model: True
